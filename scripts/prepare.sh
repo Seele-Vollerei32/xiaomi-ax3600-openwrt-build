@@ -19,6 +19,9 @@ if [ $? -ne 0 ]; then
     echo "cherry-pick failed, please check"
     exit 1
 fi
+cp feeds.conf.default feeds.conf
+sed 's/$/src-git\ kenzo\ https:\/\/github.com\/kenzok8\/openwrt-packages/' feeds.conf
+sed 's/$/src-git\ small\ https:\/\/github.com\/kenzok8\/small/' feeds.conf
 
 # 更新 Feeds
 ./scripts/feeds update -a
@@ -26,9 +29,9 @@ fi
 
 # 添加第三方软件包
 ## openclash
-git clone https://github.com/vernesong/OpenClash.git --single-branch --depth 1 package/new/luci-openclash
+#git clone https://github.com/vernesong/OpenClash.git --single-branch --depth 1 package/new/luci-openclash
 ## argon theme
-git clone https://github.com/jerrykuku/luci-theme-argon.git --single-branch --depth 1 package/new/luci-theme-argon
+#git clone https://github.com/jerrykuku/luci-theme-argon.git --single-branch --depth 1 package/new/luci-theme-argon
 ## KMS激活
 svn export https://github.com/immortalwrt/luci/branches/master/applications/luci-app-vlmcsd package/new/luci-app-vlmcsd
 svn export https://github.com/immortalwrt/packages/branches/master/net/vlmcsd package/new/vlmcsd
@@ -53,6 +56,7 @@ svn export https://github.com/immortalwrt/luci/branches/master/modules/luci-mod-
 svn export https://github.com/immortalwrt/packages/branches/master/utils/coremark package/new/coremark
 svn export https://github.com/immortalwrt/immortalwrt/branches/master/package/emortal/default-settings package/emortal/default-settings
 # svn export https://github.com/immortalwrt/immortalwrt/branches/openwrt-23.05/package/utils/mhz package/utils/mhz
+git clone https://github.com/fullcone-nat-nftables/nft-fullcone.git package/new/nft-fullcone
 
 # fix luci-theme-argon css
 bash ../scripts/fix-argon.sh
