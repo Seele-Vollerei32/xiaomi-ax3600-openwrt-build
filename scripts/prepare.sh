@@ -19,6 +19,7 @@ if [ $? -ne 0 ]; then
     echo "cherry-pick failed, please check"
     exit 1
 fi
+
 cp feeds.conf.default feeds.conf
 sed 's/$/src-git\ kenzo\ https:\/\/github.com\/kenzok8\/openwrt-packages/' feeds.conf
 sed 's/$/src-git\ small\ https:\/\/github.com\/kenzok8\/small/' feeds.conf
@@ -62,7 +63,7 @@ git clone https://github.com/fullcone-nat-nftables/nft-fullcone.git package/new/
 bash ../scripts/fix-argon.sh
 
 # 增加 oh-my-zsh
-bash ../scripts/preset-terminal-tools.sh
+#bash ../scripts/preset-terminal-tools.sh
 
 # config file
 cp ../config/new-config .config
